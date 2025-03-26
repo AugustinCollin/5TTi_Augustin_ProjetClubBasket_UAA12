@@ -52,4 +52,15 @@ foreign key (RencontreId) references Rencontre (RencontreId),
 foreign key (utiId) references utilisateur (utiId),
 foreign key (club_BasketId) references club_Basket (club_BasketId)
 );
-insert into utilisateur(utiNom, utiTel, utiAnniversaire 
+alter table utilisateur
+rename column utiAnniversiare to utiAnniversaire;
+alter table utilisateur
+rename column uitEmail to utiEmail;
+alter table utilisateur
+drop column utiTel ;
+alter table utilisateur
+ADD utiTel VarChar(25);
+
+insert into utilisateur(utiNom, utiTel, utiAnniversaire, utiPrenom, utiRôle, utiPassword, utiEmail)
+values ("Augustin", "+32478162923", "2007-04-18", "Collin", "Admin", "TchoupiD3Lahess", "colaugu@gmail.com");
+
