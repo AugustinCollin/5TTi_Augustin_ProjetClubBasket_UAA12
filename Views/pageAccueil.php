@@ -4,7 +4,7 @@
 <?php if ($uri === "/mesclub_Basket") : ?>
     <h1>Vos clubs de basket</h1>
 <?php else : ?>
-    <h1>Liste des club de basket répertoriées</h1>
+    <h1>Liste des clubs de basket répertoriés</h1>
 <?php endif ?>
 
 <?php if (isset($_SESSION["user"])) : ?>
@@ -12,12 +12,12 @@
 <?php endif ?>
         
 <div class="flexible wrap space-around">
-    <?php foreach ($club_Basket as $club_Basket) : ?>
+    <?php foreach ($clubs_Basket as $club_Basket) : ?>
         <div class="border card">
-            <h2 class="center"><?= $club_Basket->Club_BasketNom?></h2>
+            <h2 class="center"><?= $club_Basket->club_BasketNom?></h2>
             <div>
                 <div class="flexible blocImageEcole">
-                    <img src="<?= $school->schoolImage ?>" alt="photo de l'école" >
+                    <img src="<?= $club_Basket->club_BasketImage ?>" alt="photo de l'école" >
                 </div>
                 <div class="center">
                     <p><span><?= $club_Basket->club_BasketAdresse?> - </span> - <span><?= $club_Basket->club_BasketTel . " " . $club_Basket->club_BasketNom?></span></p>

@@ -11,7 +11,7 @@ $uri = $_SERVER["REQUEST_URI"];
 
 if ($uri === "/index.php" || $uri === "/") {
     //récupérer toutes les donées de la table school
-    $schools = selectAllClubs($pdo);
+    $clubs_Basket = selectAllClubs($pdo);
 
     $title = "Page d'accueil";                  //titre à afficher dans l'onglet de la page du navigateur
     $template = "Views/pageAccueil.php";        //chemin vers la vue demandée

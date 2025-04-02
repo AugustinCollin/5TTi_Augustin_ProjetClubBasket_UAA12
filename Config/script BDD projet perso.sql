@@ -1,3 +1,4 @@
+/*
 create table utilisateur (
 utiId int NOT NULL AUTO_INCREMENT,
 utiNom VarChar(20),
@@ -63,4 +64,4 @@ ADD utiTel VarChar(25);
 
 insert into utilisateur(utiNom, utiTel, utiAnniversaire, utiPrenom, utiRôle, utiPassword, utiEmail)
 values ("Augustin", "+32478162923", "2007-04-18", "Collin", "Admin", "TchoupiD3Lahess", "colaugu@gmail.com");
-
+*/

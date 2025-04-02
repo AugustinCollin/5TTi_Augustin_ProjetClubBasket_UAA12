@@ -13,13 +13,13 @@
 </head>
 <body>
     <header> <!-- contenu prévu composant de référence => insertion Php -->
-        <?php require_once("Views/Components/navBar.php"); ?>
+        <?php require_once("Views/Component/navBar.php"); ?>
     </header>
     <main>  <!-- contenu variable => insertion Php avec variable $template qui sera définie lors du routage -->
         <?php require_once($template); ?>
     </main>
     <footer>
-        <?php require_once("Views/Components/footer.php"); ?>
+        <?php require_once("Views/Component/footer.php"); ?>
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
