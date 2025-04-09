@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(211, 222, 218);
+    background-color: lightgrey;
 }
 
 header {
@@ -73,7 +73,7 @@ img {
     height: auto;
 } 
 
-.blocImageEcole {
+.blocImageclub_basket {
     height: 300px;
     align-items: center;
 }

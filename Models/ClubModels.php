@@ -1,8 +1,4 @@
-<select name='options[]' id = 'options-select' multiple> 
-    <?php foreach ($options as $option) : ?>
-        <option value="<?= $option->optionScolaireId ?>"><?= $option->nom ?></option>
-    <?php endforeach ?>
-</select>
+
 
 <?php
 
@@ -54,10 +50,10 @@ function deleteOptionsclub_BasketFromUser($dbh)
     }
 }
 
-function slectMyclub_Basket($pdo)
+function selectMyclub_Basket($pdo)
 {
     try{
-        $query = "slect * from school where utilisateurId = :utilisateurId";
+        $query = "select * from school where utilisateurId = :utilisateurId";
         $selectclub_Basket = $pdo->prepare($query);
         $selectclub_Basket->execute([
             "utilisateurId" => $_SESSION["user"]->id
@@ -83,13 +79,29 @@ function selectAllOptions($pdo)
         die($message);
     }
 }
+function createclub_Basket($pdo)
+{
+    try {
+        $query = 'insert into recette (recetteNom, recetteImage, utilisateurId)
+        values (:recetteNom, :recetteImage, :utilisateurId)';
+        $addclub_Basket = $pdo->prepare($query);
+        $addclub_Basket->execute([
+            'club_BasketNom' => $_POST['nom'],
+            'club_BasketImage' => $_POST['image'],
+            'utilisateurId' => $_SESSION['user']->id
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
 
 function selectOneclub_Basket ($pdo)
 {
     try{
         $query = "select * from school where schoolId = :schoolId";
-        $slectclub_Basket = $pdo->prepare($query);
-        $slectclub_Basket->execute([
+        $selectclub_Basket = $pdo->prepare($query);
+        $selectclub_Basket->execute([
             "schoolId" => $_GET["schoolId"]
         ]);
         $club_Basket = $selectclub_Basket->fetch();
@@ -100,13 +112,14 @@ function selectOneclub_Basket ($pdo)
         die($message);
     }
 }
+
 function ajouterOptionclub_Basket ($pdo, $recetteId, $optionId)
 {
     try {
         $query='insert into option_recette (recetteId, optionrecetteId) values (:recetteId, :optionrecetteId)';
         $deleteAllclub_BasketFromId = $pdo->prepare($query);
         $deleteAllclub_BasketFromId->execute([
-            'recetteId' => $recetteId,
+            'club_BasketID' => $recetteId,
             'optionrecetteId' => $optionId
         ]);
     } catch (\PDOException $e) {
@@ -122,8 +135,8 @@ function selectOptionsActiveclub_Basket($pdo)
     try{
         $query = "select * from optionscolaire where optionscolaire in (select optionsolairefrom option_ecolewhere scoolId = :schoolId);";
                     
-        $slectclub_Basket = $pdo->prepare($query);
-        $slectclub_Basket->execute([
+        $selectclub_Basket = $pdo->prepare($query);
+        $selectclub_Basket->execute([
             "club-BasketId" => $_GET["club_BasketId"]
         ]);
         $option = $selectclub_Basket->fetch();
@@ -134,3 +147,4 @@ function selectOptionsActiveclub_Basket($pdo)
         die($message);
     }
 }
+

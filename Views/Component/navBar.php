@@ -1,4 +1,3 @@
-
 <ul class = "flexible space-between">
     <?php if (isset($_SESSION['user'])) : ?>
         <li class='menu'><a href='mesEcoles'>Mes clubs de basket</a></li>

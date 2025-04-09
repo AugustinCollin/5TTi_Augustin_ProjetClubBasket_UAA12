@@ -3,8 +3,7 @@
 // on ajoutera par la suite les require aux modèles
 
 // récupération du chemin désiré
-$uri = $_SERVER["REQUEST_URI"];
-var_dump($uri);
+require_once("Models/userModel.php");
 if ($uri === "/connexion") {
     if (isset($_POST['btnEnvoi'])) {
         $erreur = false;
@@ -59,13 +58,13 @@ elseif ($uri === "/deconnexion") {
     session_destroy();
     header('location:/');
 }
-
 elseif ($uri === "/deleteProfil") {
     deleteOptionsclub_BasketFromUser($pdo);
     deleteAllclub_BasketFromUser($pdo);
     deleteUser($pdo);
     header('location:/deconnexion');
 }
+
 
 function verifEmptyData()
 {

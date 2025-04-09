@@ -16,16 +16,12 @@
         <div class="border card">
             <h2 class="center"><?= $club_Basket->club_BasketNom?></h2>
             <div>
-                <div class="flexible blocImageEcole">
-                    <img src="<?= $club_Basket->club_BasketImage ?>" alt="photo de l'école" >
+                <div class="flexible blocImageclub_basket">
+                    <img src="../../Assets/Images/Erpent.png" <?= $club_Basket->club_BasketImage ?> alt="photo du club de basket d'Erpent" >
                 </div>
                 <div class="center">
+                <a href=""></a>
                     <p><span><?= $club_Basket->club_BasketAdresse?> - </span> - <span><?= $club_Basket->club_BasketTel . " " . $club_Basket->club_BasketNom?></span></p>
-                    
-                    <!--
-                    <p><span> Rue de la pépinière 101</span> - <span>Namur</span></p>
-                    <h3>081729011>
-                    -->
                     <a href="voirClub.php" class="btn btn-page">Voir le club</a>
                     <?php if ($uri === "/mesClubBasket") : ?>
                         <p><a href="deleteClub?club_BasketId=<?= $club_Basket->club_BasketId ?>">Supprimer le club de basket</a></p>
