@@ -18,7 +18,7 @@ fieldset{
     color: whitesmoke;
     border: 1px solid rgb(24, 61, 61);
 }
-
+Ò
 .btn-primary {
     background-color: rgb(24, 61, 61);
     color: whitesmoke;
@@ -47,6 +47,8 @@ form label {
     display: block;
     font-size: 2em;
     margin: 10px 0;
+    color: orange;
+    
 }
 
 form legend {

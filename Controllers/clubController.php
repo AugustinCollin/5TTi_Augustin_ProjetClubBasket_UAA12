@@ -4,7 +4,7 @@ require_once "Models/schoolModel.php";
 
 $uri = $_SERVER["REQUEST_URI"];
 
-if ($uri === "/mesclub_Basket"){
+if ($uri === "/mesClub_basket"){
     $school = selectMyclub_Basket($pdo);
 
     $title = "Mes clubs de basket";

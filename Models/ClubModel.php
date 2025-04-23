@@ -82,11 +82,15 @@ function selectAllOptions($pdo)
 function createclub_Basket($pdo)
 {
     try {
-        $query = 'insert into recette (recetteNom, recetteImage, utilisateurId)
+        $query = 'insert into club_basket (club_BasketNom, club_BaskteImage, utiId, club_BasketAdresse, club_BaketTel)
         values (:recetteNom, :recetteImage, :utilisateurId)';
         $addclub_Basket = $pdo->prepare($query);
         $addclub_Basket->execute([
             'club_BasketNom' => $_POST['nom'],
+            'club_BasketAdresse' => $_POST ['Adresse'],
+            'club_BasketVille' => $_POST ['Ville'],
+            'club_BasketCodePostal' => $_POST['code_postal'],
+            'club_BasketNumero' => $_POST ['numero_telephone'],
             'club_BasketImage' => $_POST['image'],
             'utilisateurId' => $_SESSION['user']->id
         ]);

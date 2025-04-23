@@ -2,7 +2,7 @@
 
 //appel aux controller
 
-require_once ("Models/ClubModels.php");
+require_once ("Models/ClubModel.php");
 
 // on ajoutera par la suite les require aux modèles
 
