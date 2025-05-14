@@ -18,7 +18,7 @@
                     <img src=" <?= $club_Basket->club_BasketImage ?>" alt="photo du club de basket" >
                 </div>
                 <div class="center">
-                <a href=""></a>
+                <a href="https://rbcerpent.be/" class="btn btn-page">Voir le club</a>
                     <p><span><?= $club_Basket->club_BasketAdresse?> - </span> - <span><?= $club_Basket->club_BasketTel . " " . $club_Basket->club_BasketNom?></span></p>
                     <a href="voirClub.php" class="btn btn-page">Voir le club</a>
                     <?php if ($uri === "/mesClub_basket") : ?>

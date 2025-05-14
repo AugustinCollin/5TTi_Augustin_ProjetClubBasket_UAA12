@@ -13,11 +13,16 @@ if ($uri === "/mesClub_basket"){
 }
 elseif ($uri === "/createclub_Basket")
 {
+    //si on a rempli le formulaire est qu'on l'a validé
         if (isset($_POST['btnEnvoi'])) {
             createclub_Basket($pdo);
+            //récupération du numéro de la dernière ligne dans la table des clubs de basket.
             $recetteId = $pdo->lastInsertId();
+            // ajout des options liées au club de basket dans la table des équipes 
+            // ne pas oublier que $_POST["options"] est un tableau ! => le parcourir et faire une écritur epour chaque élément trouvé
             for ($i = 0; $i < count($_POST["options"]); $i++) {
-                $optionclub_BasketId = $_POST["options"] [$i];
+                $optionclub_BasketId = $_POST[""] [$i];
+                //écriture dans la table des options 
                 ajouterOptionclub_Basket($pdo, $club_BasketId, $optionclub_BasketId);
             }
             header("location:/mesRecettes");
