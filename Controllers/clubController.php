@@ -32,4 +32,14 @@ elseif ($uri === "/createclub_Basket")
         $template = "Views/Recettes/editOrCreateRecette.php";
         require_once("Views/base.php");
 }
+//ceci n'est possible que si on dispose d'un id pour le club de basket => isset ($_GET["schoolId"])
+elseif (isset($_GET["club_basketId"]) && $uri === "/Voirclub_Basket,club_BasketId=" . $_GET["club_BasketId"])
+{
+    //rechercher les données du club de basket concerné  ainsi qie les options correspondantes 
+    $club_Basket = selectOneclub_Basket($pdo);
+    $options = selectOptionclub_basket($pdo);
+    $title = "ajout d'un club de basket";   //titre à afficher dans l'onglet de la page du navigateur 
+    $template = "Views/basket/basket.php";  //chemin vers la vue demandée 
+    require_once("Views/base.php"); //appel de la page de base qui sera remplie avec la vue demandée
+}
 

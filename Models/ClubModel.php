@@ -107,16 +107,22 @@ function createclub_Basket($pdo)
         die($message);
     }
 }
-
+/*
+Fonction selectOneclub_Basket
+------------------------------
+BUT: aller rechercher les caractéristiques du club de basket actif dans la base de donnée
+IN: $pdo reprenant toutes les informations de connexion
+OUT: objet pdo contenant toutes les informations concernat le club de basket actif
+*/
 function selectOneclub_Basket ($pdo)
 {
     try{
         $query = "select * from school where schoolId = :schoolId";
         $selectclub_Basket = $pdo->prepare($query);
         $selectclub_Basket->execute([
-            "schoolId" => $_GET["schoolId"]
+            "schoolId" => $_GET["schoolId"] // récupération du paramètre se trouvant dans l'adresse
         ]);
-        $club_Basket = $selectclub_Basket->fetch();
+        $club_Basket = $selectclub_Basket->fetch(); //récupération d'un enregistrement (pas fetchAll)
         return $club_Basket;
     } catch(PDOException $e) 
     {
@@ -140,7 +146,13 @@ function ajouterOptionEquipe ($pdo, $EquipeId, $optionId)
     }
 }
 
-
+/*
+Fonction selectOptionsAvtiveclub_Basket
+---------------------------------------
+BUT: aller rechercher dans la base de donnée les caractéristiques des options du club afiché
+IN: $pdo reprenant toutes les informations de connexion
+OUT: objet pdo contenant la liste des options du club de basket afiché
+*/
     
 function selectOptionsActiveclub_Basket($pdo)
 {
