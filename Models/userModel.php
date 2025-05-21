@@ -2,7 +2,7 @@
 function createUser($pdo)
 {
     try {
-        $query = 'insert into utilisateurs (nomUser, prenomUser, loginUser, passWordUser, emailUser, role)
+        $query = 'insert into utilisateur (nomUser, prenomUser, loginUser, passWordUser, emailUser, role)
         values (:nomUser, :prenomUser, :loginUser, :passWordUser, :emailUser, :role)';
         $ajouteUser = $pdo->prepare($query);
         $ajouteUser->execute([
@@ -22,7 +22,7 @@ function createUser($pdo)
 function connectUser($pdo)
 {
     try {
-        $query = 'select * from utilisateurs where loginUser = :loginUser and passWordUser = :passWordUser';
+        $query = 'select * from utilisateur where loginUser = :loginUser and passWordUser = :passWordUser';
         $connectUser = $pdo->prepare($query);
         $connectUser->execute([
             'loginUser' => $_POST['login'],
@@ -45,7 +45,9 @@ function connectUser($pdo)
 function updateUser($pdo)
 {
     try {
-        $query = 'update utilisateurs set nomUser = :nomUser, prenomUser = :prenomUser, passWordUser = :passWordUser, emailUser = :emailUser where id = :id';
+        //définition de la reqiête de mise à jour en utilisant la notion de paramètre
+        //sans oublier le critère ! pour ne pas modifier toutes les lignes de la tables utilisateur !
+        $query = 'update utilisateur set nomUser = :nomUser, prenomUser = :prenomUser, passWordUser = :passWordUser, emailUser = :emailUser where id = :id';
         $ajouteUser = $pdo->prepare($query);
         $ajouteUser->execute([
             'nomUser' => $_POST['nom'],
@@ -65,7 +67,7 @@ function updateUser($pdo)
 function updateSession($pdo)
 {
     try {
-        $query = 'select * from utilisateurs where id = :id';
+        $query = 'select * from utilisateur where id = :id';
         $selectUser = $pdo->prepare($query);
         $selectUser->execute([
             'id' => $_SESSION['user']->id
@@ -81,7 +83,7 @@ function updateSession($pdo)
 function DeleteUser($pdo)
 {
     try {
-        $query = 'delete from utilisateurs where id = :id';
+        $query = 'delete from utilisateur where id = :id';
         $delUser = $pdo->prepare($query);
         $delUser->execute([
             'id' => $_SESSION['user']->id

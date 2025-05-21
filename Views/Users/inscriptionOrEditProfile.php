@@ -1,3 +1,4 @@
+
 <div class="flex space-evenly wrap">
     <form method="post" action="">
         <fieldset>
@@ -15,8 +16,12 @@
                 <input type="email" placeholder="Email" class="form-control" id="email" name="email" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->prenomUser ?>" <?php endif ?>>
             </div>
             <div class="mb-3">
-                <label for="Login" class="form-label">Login</label>
-                <input type="text" placeholder="Login" class="form-control" id="login" name="login" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->loginUser ?>" <?php endif ?>>
+                <label for="email" class="form-label">Votre numéro de téléphone</label>
+                <input type="email" placeholder="téléphone" class="form-control" id="email" name="email" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->prenomUser ?>" <?php endif ?>>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Votre date d'anniversaire</label>
+                <input type="email" placeholder="JJ/MM/AAAA" class="form-control" id="email" name="email" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->AnniversaireUser ?>" <?php endif ?>>
             </div>
             <div class="mb-3">
                 <label for="Password" class="form-label">Mot de passe</label>

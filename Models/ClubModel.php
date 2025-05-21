@@ -80,7 +80,7 @@ function selectAllEquipes($pdo)
         $query = "SELECT * FROM club_Basket";
         $selectEquipes = $pdo->prepare($query);
         $selectEquipes->execute();
-        $club_Basket = $selectEquipe->fetchAll();
+        $club_Basket = $selectEquipes->fetchAll();
         return $club_Basket;
     } catch (PDOException $e) {
         $message = $e->getMessage();
@@ -134,10 +134,10 @@ function selectOneclub_Basket ($pdo)
 function ajouterOptionEquipe ($pdo, $EquipeId, $optionId)
 {
     try {
-        $query='insert into OptionEquipe (EquipeId, Id) values (:recetteId, :optionrecetteId)';
+        $query='insert into zquipe (EquipeId, EquipeCatégorie) values (:EquipeId, EquipeCatégorie)';
         $deleteAllclub_BasketFromId = $pdo->prepare($query);
         $deleteAllclub_BasketFromId->execute([
-            'club_BasketID' => $club_BasketId,
+            'club_BasketId' => $club_BasketId,
             'Optionclub_BasketId' => $club_BasketId
         ]);
     } catch (\PDOException $e) {
