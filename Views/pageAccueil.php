@@ -15,12 +15,13 @@
             <h2 class="center"><?= $club_Basket->club_BasketNom?></h2>
             <div>
                 <div class="flexible blocImageclub_basket">
-                    <img src=" <?= $club_Basket->club_BasketImage ?>" alt="photo du club de basket" >
+                    <img src="<?= $club_Basket->club_basketImage ?>" alt="photo du club de basket" >
                 </div>
                 <div class="center">
-                <a href="https://rbcerpent.be/" class="btn btn-page">Voir le club</a>
-                    <p><span><?= $club_Basket->club_BasketAdresse?> - </span> - <span><?= $club_Basket->club_BasketTel . " " . $club_Basket->club_BasketNom?></span></p>
-                    <a href="voirClub.php" class="btn btn-page">Voir le club</a>
+                <a href="https://rbcerpent.be/" class="btn btn-page">page du club </a>
+                    <p><span><?= $club_Basket->club_BasketAdresse?> - </span> - <span><?= $club_Basket->club_BasketNom?></span></p>
+                <a href="" class="btn btn-page">Voir le club </a>
+                    
                     <?php if ($uri === "/mesClub_basket") : ?>
                         <p><a href="deleteClub?club_basketId=<?= $club_Basket->club_BasketId ?>">Supprimer le club de basket</a></p>
                         <p><a href="updateClub?club_basketId=<?= $club_Basket->club_BasketId ?>">Modifier le club de basket</p>

@@ -73,7 +73,14 @@ function selectMyclub_Basket($pdo)
         die($message);
     }
 }
-function selectAllEquipes($pdo)
+/*
+fonction selectAllOptions 
+--------------------------
+BUT: aller rechercher les caractéristiques de toutes les options dans la base de données
+IN: $pdo reprenan ttoutes les informations de conexion 
+OUT: objet pdo contenant la liste de toutes les options existantes de la bas de données 
+*/
+function selectAllOptions($pdo)
 {
 
     try{
@@ -87,6 +94,12 @@ function selectAllEquipes($pdo)
         die($message);
     }
 }
+/*
+fonction createclub_Basket 
+-------------------------------
+BUT: ajouter les données d'un club de basket encodées dans la table club_Basket
+IN: $pdo reprenant toutes les information de connexion 
+*/
 function createclub_Basket($pdo)
 {
     try {
@@ -98,7 +111,6 @@ function createclub_Basket($pdo)
             'club_BasketAdresse' => $_POST ['Adresse'],
             'club_BasketVille' => $_POST ['Ville'],
             'club_BasketCodePostal' => $_POST['code_postal'],
-            'club_BasketNumero' => $_POST ['numero_telephone'],
             'club_BasketImage' => $_POST['image'],
             'utilisateurId' => $_SESSION['user']->id
         ]);
@@ -117,10 +129,10 @@ OUT: objet pdo contenant toutes les informations concernat le club de basket act
 function selectOneclub_Basket ($pdo)
 {
     try{
-        $query = "select * from school where schoolId = :schoolId";
+        $query = "select * from club_Basket where club_BasketId = :club_BasketId";
         $selectclub_Basket = $pdo->prepare($query);
         $selectclub_Basket->execute([
-            "schoolId" => $_GET["schoolId"] // récupération du paramètre se trouvant dans l'adresse
+            "cl" => $_GET["club_BasketId"] // récupération du paramètre se trouvant dans l'adresse
         ]);
         $club_Basket = $selectclub_Basket->fetch(); //récupération d'un enregistrement (pas fetchAll)
         return $club_Basket;
@@ -130,19 +142,23 @@ function selectOneclub_Basket ($pdo)
         die($message);
     }
 }
-
-function ajouterOptionEquipe ($pdo, $EquipeId, $optionId)
+/*
+fonction aujouteroptionEquipe
+--------------------------------
+BUT: ajouter les données d'une equipe encodée par l'utilisateur dans la table equipe 
+IN: $pdo reprenant toutes les informations de connexion 
+    $equipeId identifiant de la dernière equipe ajoutée dans la table equipe
+*/
+function ajouterOptionEquipe($pdo, $EquipeId, $EquipeCategorie)
 {
     try {
-        $query='insert into zquipe (EquipeId, EquipeCatégorie) values (:EquipeId, EquipeCatégorie)';
-        $deleteAllclub_BasketFromId = $pdo->prepare($query);
-        $deleteAllclub_BasketFromId->execute([
-            'club_BasketId' => $club_BasketId,
-            'Optionclub_BasketId' => $club_BasketId
+        $query = 'INSERT INTO equipe (EquipeId, EquipeCatégorie) VALUES (:EquipeId, :EquipeCategorie)';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([
+            'EquipeId' => $EquipeId,
         ]);
     } catch (\PDOException $e) {
-        $message = $e->getMessage();
-        die($message);
+        die("Erreur lors de l'ajout de l'équipe : " . $e->getMessage());
     }
 }
 

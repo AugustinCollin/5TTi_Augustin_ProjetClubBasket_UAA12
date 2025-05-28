@@ -12,7 +12,7 @@ $uri = $_SERVER["REQUEST_URI"];
 if ($uri === "/index.php" || $uri === "/") {
     //récupérer toutes les donées de la table school
     $clubs_Basket = selectAllClubs($pdo);
-
+    var_dump($clubs_Basket);
     $title = "Page d'accueil";                  //titre à afficher dans l'onglet de la page du navigateur
     $template = "Views/pageAccueil.php";        //chemin vers la vue demandée
     require_once("Views/base.php");             //appel de la page de base qui sera remplie avec la vue demandée
