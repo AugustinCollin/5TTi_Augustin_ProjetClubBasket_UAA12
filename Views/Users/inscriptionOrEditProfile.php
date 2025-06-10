@@ -16,12 +16,12 @@
                 <input type="email" placeholder="Email" class="form-control" id="email" name="email" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->prenomUser ?>" <?php endif ?>>
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Votre numéro de téléphone</label>
-                <input type="email" placeholder="téléphone" class="form-control" id="email" name="email" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->prenomUser ?>" <?php endif ?>>
+                <label for="téléphone" class="form-label">Votre numéro de téléphone</label>
+                <input type="téléphone" placeholder="téléphone" class="form-control" id="téléphone" name="téléphone" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->prenomUser ?>" <?php endif ?>>
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Votre date d'anniversaire</label>
-                <input type="email" placeholder="JJ/MM/AAAA" class="form-control" id="email" name="email" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->AnniversaireUser ?>" <?php endif ?>>
+                <label for="Anniversaire" class="form-label">Votre date d'anniversaire</label>
+                <input type="Anniversaire" placeholder="JJ/MM/AAAA" class="form-control" id="Anniversaire" name="Anniversaire" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->AnniversaireUser ?>" <?php endif ?>>
             </div>
             <div class="mb-3">
                 <label for="Password" class="form-label">Mot de passe</label>

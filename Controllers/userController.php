@@ -59,8 +59,8 @@ elseif ($uri === "/deconnexion") {
     header('location:/');
 }
 elseif ($uri === "/deleteProfil") {
-    deleteOptionsclub_BasketFromUser($pdo);
-    deleteAllclub_BasketFromUser($pdo);
+    deleteOptionsclub_basketFromUser($pdo);
+    deleteAllclub_basketFromUser($pdo);
     deleteUser($pdo);
     header('location:/deconnexion');
 }

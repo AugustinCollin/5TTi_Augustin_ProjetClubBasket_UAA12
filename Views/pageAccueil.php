@@ -20,9 +20,9 @@
                 <div class="center">
                 <a href="https://rbcerpent.be/" class="btn btn-page">page du club </a>
                     <p><span><?= $club_Basket->club_BasketAdresse?> - </span> - <span><?= $club_Basket->club_BasketNom?></span></p>
-                <a href="" class="btn btn-page">Voir le club </a>
+                <a href="updateclub_basket?updateclub_basket" class="btn btn-page">Voir le club </a>
                     
-                    <?php if ($uri === "/mesClub_basket") : ?>
+                    <?php if ($uri === "/mesclub_basket") : ?>
                         <p><a href="deleteClub?club_basketId=<?= $club_Basket->club_BasketId ?>">Supprimer le club de basket</a></p>
                         <p><a href="updateClub?club_basketId=<?= $club_Basket->club_BasketId ?>">Modifier le club de basket</p>
                     <?php endif ?>

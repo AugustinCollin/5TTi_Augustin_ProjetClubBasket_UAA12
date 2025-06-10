@@ -6,7 +6,7 @@ function selectAllClubs($pdo)
 {
     try {
         //définition de la requête
-        $query = 'select * from club_Basket';
+        $query = 'select * from club_basket';
         //préparation de l'execution de a requête
         $selectclubs_Basket = $pdo->prepare($query);
         //execution
@@ -22,12 +22,12 @@ function selectAllClubs($pdo)
 }
 
 
-function deleteAllclub_BasketFromUser($pdo)
+function deleteAllclub_basketFromUser($pdo)
 {
     try {
         $query = 'delete from school where utilisateurId = :utilisateurId';
-        $deleteAllclub_BasketFromId = $pdo->prepare($query);
-        $deleteAllclub_BasketFromId->execute([
+        $deleteAllclub_basketFromId = $pdo->prepare($query);
+        $deleteAllclub_basketFromId->execute([
             'utilisateurId' => $_SESSION['user']->id
         ]);
     } catch (PDOException $e) {
@@ -36,12 +36,12 @@ function deleteAllclub_BasketFromUser($pdo)
     }
 }
 
-function deleteOptionsclub_BasketFromUser($dbh)
+function deleteOptionsclub_basketFromUser($dbh)
 {
     try {
         $query = 'delete from option_ecole where schoolId in (select schoolId from school where utilisateurId = :utilisateurId)';
-        $deleteAllclub_BasketFromId = $dbh->prepare($query);
-        $deleteAllclub_BasketFromId->execute([
+        $deleteAllclub_basketFromId = $dbh->prepare($query);
+        $deleteAllclub_basketFromId->execute([
             'utilisateurId' => $_SESSION['user']->id
         ]);
     } catch (PDOException $e) {
@@ -50,24 +50,24 @@ function deleteOptionsclub_BasketFromUser($dbh)
     }
 }
 /*
-Fonction selectMyclub_Basket
+Fonction selectMyclub_basket
 ----------------------------
 BUT: aller rechercher les caractéristiques des clubs de basket de l'utilisateur conncté dans la base de donnée
 IN: $pdo reprenant toutes les informations de connexion
 OUT: objet pdo contenant les écoles de l'utilisateur connecté de la base de donnée 
 */
-function selectMyclub_Basket($pdo)
+function selectMyclub_basket($pdo)
 {
     try{
         //requête avec critère et paramètre !
         $query = "select * from school where utilisateurId = :utilisateurId";
-        $selectclub_Basket = $pdo->prepare($query);
-        $selectclub_Basket->execute([
+        $selectclub_basket = $pdo->prepare($query);
+        $selectclub_basket->execute([
             //le paramètre est l'ID de l'utilisateur connecté
             "utilisateurId" => $_SESSION["user"]->id
         ]);
-        $club_Basket = $selectclub_Basket->fetchAll();
-        return $club_Basket;
+        $club_basket = $selectclub_basket->fetchAll();
+        return $club_basket;
     }  catch (PDOException $e){
         $message = $e->getMessage();
         die($message);
@@ -84,34 +84,34 @@ function selectAllOptions($pdo)
 {
 
     try{
-        $query = "SELECT * FROM club_Basket";
+        $query = "SELECT * FROM club_basket";
         $selectEquipes = $pdo->prepare($query);
         $selectEquipes->execute();
-        $club_Basket = $selectEquipes->fetchAll();
-        return $club_Basket;
+        $club_basket = $selectEquipes->fetchAll();
+        return $club_basket;
     } catch (PDOException $e) {
         $message = $e->getMessage();
         die($message);
     }
 }
 /*
-fonction createclub_Basket 
+fonction createclub_basket 
 -------------------------------
-BUT: ajouter les données d'un club de basket encodées dans la table club_Basket
+BUT: ajouter les données d'un club de basket encodées dans la table club_basket
 IN: $pdo reprenant toutes les information de connexion 
 */
-function createclub_Basket($pdo)
+function createclub_basket($pdo)
 {
     try {
-        $query = 'insert into club_basket (club_BasketNom, club_BaskteImage, utiId, club_BasketAdresse, club_BaketTel)
+        $query = 'insert into club_basket (club_basketNom, club_BaskteImage, utiId, club_basketAdresse, club_BaketTel)
         values (:recetteNom, :recetteImage, :utilisateurId)';
-        $addclub_Basket = $pdo->prepare($query);
-        $addclub_Basket->execute([
-            'club_BasketNom' => $_POST['nom'],
-            'club_BasketAdresse' => $_POST ['Adresse'],
-            'club_BasketVille' => $_POST ['Ville'],
-            'club_BasketCodePostal' => $_POST['code_postal'],
-            'club_BasketImage' => $_POST['image'],
+        $addclub_basket = $pdo->prepare($query);
+        $addclub_basket->execute([
+            'club_basketNom' => $_POST['nom'],
+            'club_basketAdresse' => $_POST ['Adresse'],
+            'club_basketVille' => $_POST ['Ville'],
+            'club_basketCodePostal' => $_POST['code_postal'],
+            'club_basketImage' => $_POST['image'],
             'utilisateurId' => $_SESSION['user']->id
         ]);
     } catch (PDOException $e) {
@@ -120,22 +120,22 @@ function createclub_Basket($pdo)
     }
 }
 /*
-Fonction selectOneclub_Basket
+Fonction selectOneclub_basket
 ------------------------------
 BUT: aller rechercher les caractéristiques du club de basket actif dans la base de donnée
 IN: $pdo reprenant toutes les informations de connexion
 OUT: objet pdo contenant toutes les informations concernat le club de basket actif
 */
-function selectOneclub_Basket ($pdo)
+function selectOneclub_basket ($pdo)
 {
     try{
-        $query = "select * from club_Basket where club_BasketId = :club_BasketId";
-        $selectclub_Basket = $pdo->prepare($query);
-        $selectclub_Basket->execute([
-            "cl" => $_GET["club_BasketId"] // récupération du paramètre se trouvant dans l'adresse
+        $query = "select * from club_basket where club_basketId = :club_basketId";
+        $selectclub_basket = $pdo->prepare($query);
+        $selectclub_basket->execute([
+            "cl" => $_GET["club_basketId"] // récupération du paramètre se trouvant dans l'adresse
         ]);
-        $club_Basket = $selectclub_Basket->fetch(); //récupération d'un enregistrement (pas fetchAll)
-        return $club_Basket;
+        $club_basket = $selectclub_basket->fetch(); //récupération d'un enregistrement (pas fetchAll)
+        return $club_basket;
     } catch(PDOException $e) 
     {
         $message = $e->getMessage();
@@ -163,27 +163,87 @@ function ajouterOptionEquipe($pdo, $EquipeId, $EquipeCategorie)
 }
 
 /*
-Fonction selectOptionsAvtiveclub_Basket
+Fonction selectOptionsAvtiveclub_basket
 ---------------------------------------
 BUT: aller rechercher dans la base de donnée les caractéristiques des options du club afiché
 IN: $pdo reprenant toutes les informations de connexion
 OUT: objet pdo contenant la liste des options du club de basket afiché
 */
     
-function selectOptionsActiveclub_Basket($pdo)
+function selectOptionsActiveclub_basket($pdo)
 {
     try{
         $query = "select * from optionscolaire where optionscolaire in (select optionsolairefrom option_ecolewhere scoolId = :schoolId);";
                     
-        $selectclub_Basket = $pdo->prepare($query);
-        $selectclub_Basket->execute([
-            "club-BasketId" => $_GET["club_BasketId"]
+        $selectclub_basket = $pdo->prepare($query);
+        $selectclub_basket->execute([
+            "club-BasketId" => $_GET["club_basketId"]
         ]);
-        $option = $selectclub_Basket->fetch();
+        $option = $selectclub_basket->fetch();
         return $option;
     } catch(PDOException $e) 
     {
         $message = $e->getMessage();
+        die($message);
+    }
+}
+/*  
+function updateclub_basket
+---------------------------
+BUT: mettre à jour les données du club de basket actif dans la table club_basket
+IN: $pdo reprennat toutes les informations de connexion
+*/
+function updateclub_basket($dbh)
+{
+    try
+    {
+        $query = "updateclub_basket set club_basketNom = :club_basketNom, club_basketAdresse= :club_basketAdresse
+        club_basketVille = :club_basketVille, club_basketCodePostal = :club_basketCodePostal, 
+        , club_basketImage = : club_basketImage where club_basketId = :club_basketid";
+        $updateclub_basketFromId = $dbh->prepare($query);
+        $updateclub_basketFromId->execute([
+            'club_basketNom' => $_POST['nom'],
+            'club_basketAdresse' => $_POST['Adresse'],
+            'club_basketCodePostal' => $_POST['Code Postal'],
+            'club_basketVille' => $_POST["Ville"],
+            'club_basketImage' => $_POST["Image"],
+            'club_basketId' => $_GET["club_basket"]
+        ]);
+
+    }catch (PDOException $e) 
+    {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+function deleteOptionEquipe($dbh)
+{
+    try
+    {
+        $query= 'delete from OptionEquipe where club_basketId = :club_basketId';
+        $deleteAllclub_basketFromId = $dbh->prepare($query);
+        $deleteAllclub_basketFromId->execute([
+            'club_basketId' => $_GET["club_basketId"]
+        ]);
+    }catch (PDOException $e)
+    {
+        $message = $e->getmessage();
+        die($message);
+    }
+
+}
+function deleteOneclub_basket($pdo)
+{
+    try
+    {
+        $query ='delete from club_basket where club_basketId = :club_basketId';
+        $deleteAllclub_basketFromId = $pdo->prepare($query);
+        $deleteAllclub_basketFromId->execute([
+            'club_basket' => $_GET["club_basketId"]
+        ]);
+    }catch (PDOException $e)
+    {
+        $message = $e->getmessage();
         die($message);
     }
 }
